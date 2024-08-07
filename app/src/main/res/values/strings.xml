@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">A1_Redo2</string>
+    <string name="task_screen_floating_description">Floating action button.</string>
+    <string name="invalid_task_error">Please enter valid input</string>
+    <string name="save_button_label">Save</string>
+    <string name="cancel_button_label">Cancel</string>
+    <string name="todo_label">Todo</string>
+    <string name="password_label">Password</string>
+    <string name="email_label">Email Address</string>
+    <string name="name_label">Name</string>
+    <string name="create_account_label">Create Account</string>
+    <string name="login_label">Log In</string>
+</resources>
