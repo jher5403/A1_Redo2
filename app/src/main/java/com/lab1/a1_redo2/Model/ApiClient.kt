@@ -137,3 +137,5 @@ class IntToBooleanAdapter : JsonAdapter<Boolean>() {
         writer.value(value?.let { if (it) 1 else 0 })
     }
 }
+
+

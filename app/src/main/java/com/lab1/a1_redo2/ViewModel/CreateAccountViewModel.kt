@@ -53,7 +53,7 @@ class CreateAccountViewModel(val api: ApiClient) : ViewModel() {
         _emailIsError.value = false
         _emailErrorText.value = ""
 
-        _password.value = "password"
+        _password.value = ""
         _passIsError.value = false
         _passErrorText.value = ""
     }
@@ -68,7 +68,6 @@ class CreateAccountViewModel(val api: ApiClient) : ViewModel() {
         }
         job.join()
         if (response!!.isSuccessful) {
-            println("Created New Account")
             toLogin()
         } else {
             val errCode = response!!.code()

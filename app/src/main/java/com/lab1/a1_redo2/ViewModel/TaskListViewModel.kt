@@ -52,7 +52,6 @@ class TaskListViewModel(val api: ApiClient) : ViewModel() {
 
     fun updateUser(newUser: UserResponse) {
         _user.value = newUser
-        println(newUser)
     }
 
     fun updateTaskTextField(field: String) {
@@ -75,7 +74,6 @@ class TaskListViewModel(val api: ApiClient) : ViewModel() {
         job.join()
         if (response!!.isSuccessful) {
             updateTaskList(response!!.body()!!)
-            //println("Successful Get List")
         } else {
             println(response!!.code())
         }
