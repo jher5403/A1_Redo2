@@ -118,6 +118,7 @@ fun CreateAccountScreen(
                         }
                     }
                 )
+
                 Button(
                     onClick = {
                         viewModel.registerUser {

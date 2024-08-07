@@ -45,11 +45,11 @@ class LogInViewModel(val api: ApiClient) : ViewModel() {
     init {
         _userId.value = -1
 
-        _email.value = "jher5403@gmail.com"
+        _email.value = ""
         _emailIsError.value = false
         _emailErrorText.value = ""
 
-        _password.value = "password"
+        _password.value = ""
         _passIsError.value = false
         _passErrorText.value = ""
 
@@ -131,12 +131,9 @@ class LogInViewModel(val api: ApiClient) : ViewModel() {
         job.join()
         if (response!!.isSuccessful) {
             updateUser(response!!.body()!!)
-            println(_user.value)
             passUser()
         } else {
             val errCode = response!!.code()
-            println(errCode)
-            // Handle errors.
             handleError(errCode)
 
         }
