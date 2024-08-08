@@ -95,10 +95,9 @@ fun LogInScreen(
                     }
                 )
 
-                // Log In Button, add load screen?
+                // Log In Button
                 Button(
                     onClick = {
-
                         viewModel.logIn {
                             sharedViewModel.passData(viewModel.user.value!!)
                             toTaskScreen()

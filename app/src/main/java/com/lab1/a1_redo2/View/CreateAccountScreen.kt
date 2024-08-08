@@ -23,11 +23,14 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import com.lab1.a1_redo2.R
 import com.lab1.a1_redo2.UIText.UIText
 import com.lab1.a1_redo2.ViewModel.CreateAccountViewModel
+import com.lab1.a1_redo2.ViewModel.SharedViewModel
 
 @Composable
 fun CreateAccountScreen(
     viewModel: CreateAccountViewModel = viewModel(),
-    switchScreen: () -> Unit
+    sharedViewModel: SharedViewModel = viewModel(),
+    switchScreen: () -> Unit,
+    toTaskScreen: () -> Unit
 ) {
     Scaffold(
         modifier = Modifier
@@ -118,11 +121,12 @@ fun CreateAccountScreen(
                         }
                     }
                 )
-
+                // Create Account Button
                 Button(
                     onClick = {
                         viewModel.registerUser {
-                            switchScreen()
+                            sharedViewModel.passData(viewModel.user.value!!)
+                            toTaskScreen()
                         }
                     },
                     modifier = Modifier

@@ -14,6 +14,9 @@ import retrofit2.Response
 class CreateAccountViewModel(val api: ApiClient) : ViewModel() {
     private val apikey = "db98b5d4-1b18-46f6-bc3f-13add13ef441"
 
+    val _user = MutableLiveData<UserResponse>()
+    val user: LiveData<UserResponse> = _user
+
     // Name Block
     val _name = MutableLiveData<String>()
     val name: LiveData<String> = _name
@@ -59,7 +62,7 @@ class CreateAccountViewModel(val api: ApiClient) : ViewModel() {
     }
 
     fun registerUser(
-        toLogin: () -> Unit
+        passUser: () -> Unit
     ) = runBlocking {
         var response: Response<UserResponse>? = null
         val job = launch {
@@ -68,7 +71,8 @@ class CreateAccountViewModel(val api: ApiClient) : ViewModel() {
         }
         job.join()
         if (response!!.isSuccessful) {
-            toLogin()
+            updateUser(response!!.body()!!)
+            passUser()
         } else {
             val errCode = response!!.code()
             handleError(errCode)
@@ -87,7 +91,6 @@ class CreateAccountViewModel(val api: ApiClient) : ViewModel() {
     }
 
     fun handleError(code: Int) {
-        // Invalid email or pass
         resetError()
         if (code == 422) {
             if (name.value!!.isBlank()) {
@@ -108,6 +111,10 @@ class CreateAccountViewModel(val api: ApiClient) : ViewModel() {
             updateEmailErrorText("Email already in use")
         }
 
+    }
+
+    fun updateUser(newUser: UserResponse) {
+        _user.value = newUser
     }
 
     // Name

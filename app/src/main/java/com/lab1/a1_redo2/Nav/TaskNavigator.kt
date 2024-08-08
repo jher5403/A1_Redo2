@@ -52,7 +52,9 @@ fun TaskNavigator() {
             val viewModel: CreateAccountViewModel = remember { CreateAccountViewModel(apiClient) }
             CreateAccountScreen(
                 viewModel = viewModel,
-                switchScreen = { goto(LOGIN) }
+                sharedViewModel = sharedViewModel,
+                switchScreen = { goto(LOGIN) },
+                toTaskScreen = { goto(TASK) },
             )
         }
     }
