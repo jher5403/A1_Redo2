@@ -11,6 +11,11 @@ import org.junit.jupiter.api.Assertions.*
 
 import org.junit.jupiter.api.Test
 
+/*
+This code frankly doesn't work, and frankly, my implementation doesn't exactly make it easy to adapt for testing like demonstrated.
+I've done what I could to adapt it, but given my API service cannot be accessed, and refactoring would take too much time, I've
+decided to turn in what I can.
+ */
 class LogInViewModelTest {
 
     @Test

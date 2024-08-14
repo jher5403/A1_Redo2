@@ -1,6 +1,5 @@
 package com.lab1.a1_redo2.ViewModel
 
-import com.lab1.a1_redo2.Data.RegisterRequest
 import com.lab1.a1_redo2.Data.UserResponse
 import com.lab1.a1_redo2.Model.ApiClient
 import io.mockk.coEvery
@@ -10,7 +9,11 @@ import io.mockk.mockk
 import kotlinx.coroutines.test.runTest
 import org.junit.jupiter.api.extension.ExtendWith
 
-
+/*
+This code frankly doesn't work, and frankly, my implementation doesn't exactly make it easy to adapt for testing like demonstrated.
+I've done what I could to adapt it, but given my API service cannot be accessed, and refactoring would take too much time, I've
+decided to turn in what I can.
+ */
 @ExtendWith(CoroutinesTestExtension::class, InstantExecutorExtension::class)
 class CreateAccountViewModelTest {
 
