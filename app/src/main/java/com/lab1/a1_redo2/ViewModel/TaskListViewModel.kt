@@ -121,4 +121,39 @@ class TaskListViewModel(val api: ApiClient) : ViewModel() {
         }
     }
 
+    // Everything below is for testing.
+
+    fun getTaskListTest() = runBlocking {
+        val job = launch {
+            val result = api.getService().getUserTasksTest(getAuth(), getUserId(), apikey)
+        }
+        job.join()
+        //updateTaskList(result)
+    }
+
+    fun addTaskTest(desc: String) = runBlocking {
+        val request = NewTaskRequest(desc, false, null)
+        val job = launch {
+            val result = api.getService().addNewTaskTest(getAuth(), getUserId(), apikey, request)
+        }
+        job.join()
+    }
+
+    fun updateTaskTest(task: NewTaskResponse, newChecked: Boolean) = runBlocking {
+        val taskId = task.id
+        val desc = task.description
+        val request = UpdateTaskRequest(desc, newChecked)
+        val job = launch {
+            val result = api.getService().updateTaskTest(getAuth(), getUserId(), taskId, apikey, request)
+        }
+        job.join()
+    }
+
+    fun logOutTest() = runBlocking {
+        val job = launch {
+            val result = api.getService().logOutTest(getAuth(), apikey)
+        }
+        job.join()
+    }
+
 }

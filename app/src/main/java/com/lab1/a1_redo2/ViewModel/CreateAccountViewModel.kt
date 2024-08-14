@@ -79,6 +79,15 @@ class CreateAccountViewModel(val api: ApiClient) : ViewModel() {
         }
     }
 
+    fun registerUserTest(email: String, name: String, password: String) = runBlocking {
+        val user = RegisterRequest(email, name, password)
+        val job = launch {
+            val result = api.getService().registerTest(apikey, user)
+        }
+        job.join()
+
+    }
+
     fun resetError() {
         _nameIsError.value = false
         _nameErrorText.value = ""

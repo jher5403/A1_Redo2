@@ -46,7 +46,7 @@ class ApiClient private constructor() {
 
         val service: ApiService = retrofit.create(ApiService::class.java)
 
-        fun getInstance(): ApiClient {
+        public fun getInstance(): ApiClient {
             if (instance == null) {
                 instance = ApiClient()
             }
@@ -55,7 +55,7 @@ class ApiClient private constructor() {
 
     }
 
-    fun getService(): ApiService {
+    public fun getService(): ApiService {
         return service
     }
 }
@@ -108,6 +108,51 @@ interface ApiService {
         @Header("Authorization") auth: String,
         @Query("apikey") apikey: String
     ): Response<Void>
+
+    // Everything below is for testing purposes, as I could not easily adapt my code to make these tests.
+    //
+
+    @POST("/api/users/register")
+    suspend fun registerTest(
+        @Query("apikey") apikey: String,
+        @Body user: RegisterRequest
+    ): UserResponse
+
+    @POST("/api/users/login")
+    suspend fun logInTest(
+        @Query("apikey") apikey: String,
+        @Body loginRequest: LoginRequest
+    ): UserResponse
+
+    @POST("/api/users/{user_id}/todos")
+    suspend fun addNewTaskTest(
+        @Header("Authorization") auth: String,
+        @Path("user_id") userId: Int,
+        @Query("apikey") apikey: String,
+        @Body task: NewTaskRequest
+    ): NewTaskResponse
+
+    @GET("/api/users/{user_id}/todos")
+    suspend fun getUserTasksTest(
+        @Header("Authorization") auth: String,
+        @Path("user_id") userId: Int,
+        @Query("apikey") apikey: String,
+    ): List<NewTaskResponse>
+
+    @PUT("/api/users/{user_id}/todos/{id}")
+    suspend fun updateTaskTest(
+        @Header("Authorization") auth: String,
+        @Path("user_id") userId: Int,
+        @Path("id") taskId: Int,
+        @Query("apikey") apikey: String,
+        @Body updateTaskRequest: UpdateTaskRequest
+    ): UpdateTaskResponse
+
+    @POST("/api/users/logout")
+    suspend fun logOutTest(
+        @Header("Authorization") auth: String,
+        @Query("apikey") apikey: String
+    ): Void
 
 }
 
