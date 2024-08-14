@@ -139,4 +139,15 @@ class LogInViewModel(val api: ApiClient) : ViewModel() {
         }
     }
 
+    fun logInTest(
+        email: String,
+        password: String
+    ) = runBlocking {
+        val user = LoginRequest(email, password)
+        val job = launch {
+            val result = api.getService().logInTest(apikey, user)
+        }
+        job.join()
+    }
+
 }
